@@ -31,11 +31,24 @@ class List {
       this.assignNodeValue(node.nextNode, value, index)
     }
   }
+
+  findIndexOfValue(value, node){
+    node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
+    if(node.value == value){
+      return node;
+    } else if (node.nextNode == 0){
+      return undefined;
+    } else {
+      return this.findIndexOfValue(value, node.nextNode)
+    }
+  }
 }
 
 list = new List()
-console.log(list);
-list.addNode(1);
-list.addNode(2);
-list.addNode(3);
-console.log(list);
+list.addNode("yabba");
+list.addNode("dabba");
+list.addNode("doo");
+console.log("The string 'doo' is in:");
+console.log(list.findIndexOfValue("doo"));
+console.log("The string 'qwerty' is in:");
+console.log(list.findIndexOfValue("qwerty"));
