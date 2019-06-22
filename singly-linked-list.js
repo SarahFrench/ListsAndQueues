@@ -42,6 +42,17 @@ class List {
       return this.findNodeByValue(value, node.nextNode)
     }
   }
+
+  findNodeByIndex(index, node){
+    node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
+    if(node.index == index){
+      return node;
+    } else if (node.nextNode == 0){
+      return undefined;
+    } else {
+      return this.findNodeByIndex(index, node.nextNode)
+    }
+  }
 }
 
 list = new List()
