@@ -31,14 +31,17 @@ class List {
     }
   }
 
-  findNodeByValue(value, node){
+  findNodeByValue(value, node, index){
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
+    index = (typeof index !== 'undefined') ?  index : 0; //if second argument not present assume starting from head of list object
     if(node.value == value){
+      node.index = index
       return node;
     } else if (node.nextNode == 0){
       return undefined;
     } else {
-      return this.findNodeByValue(value, node.nextNode)
+      index += 1;
+      return this.findNodeByValue(value, node.nextNode, index);
     }
   }
 
