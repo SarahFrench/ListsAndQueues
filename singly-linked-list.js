@@ -106,14 +106,19 @@ class List {
   }
 }
 
-list = new List()
-list.addNode("yabba");
-list.addNode("dabba");
-list.addNode("doo");
-list.addNode("Flintstones innit");
+module.exports = {
+  Node,
+  List
+}
+
+myList = new List()
+myList.addNode("yabba");
+myList.addNode("dabba");
+myList.addNode("doo");
+myList.addNode("Flintstones innit");
 // list.deleteNodeByValue("dabba")
 // console.log(list.findNodeByValue("doo"));
-console.log(list.values());
+// console.log(myList.values());
 // console.log(list);
 // list.deleteNodeByValue("doo")
 // list.deleteNodeByValue("dabba")
