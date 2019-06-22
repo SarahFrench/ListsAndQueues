@@ -91,16 +91,29 @@ class List {
       return this.getLength(node.nextNode, index);
     }
   }
+
+  values(node, values){
+    node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
+    values = (typeof values !== 'undefined') ?  values : [];
+    if (node.value == 0){
+      return values
+    } else if (node.value != undefined) {
+      values.push(node.value)
+      return this.values(node.nextNode, values)
+    } else {
+      return values
+    }
+  }
 }
 
 list = new List()
 list.addNode("yabba");
 list.addNode("dabba");
 list.addNode("doo");
-// list.addNode("Flintstones innit");
+list.addNode("Flintstones innit");
 // list.deleteNodeByValue("dabba")
 // console.log(list.findNodeByValue("doo"));
-console.log(list.getLength());
+console.log(list.values());
 // console.log(list);
 // list.deleteNodeByValue("doo")
 // list.deleteNodeByValue("dabba")
