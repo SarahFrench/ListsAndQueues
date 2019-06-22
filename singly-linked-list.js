@@ -77,30 +77,30 @@ class List {
     let nodeToDelete = this.findNodeByValue(value);
     let downstreamNode = nodeToDelete.nextNode;
     this.changeNextNodeAtIndex(nodeToDelete.index-1, downstreamNode);
-    this.updateIndices()
   }
 
-  updateIndices(node){
+  getLength(node, index){
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
-    if (node.nextNode.index != node.index+1 && node.nextNode != 0){
-      node.nextNode.index = node.index+1;
-      this.updateIndices(node.nextNode);
-    } else if (node.nextNode != 0) {
-      this.updateIndices(node.nextNode);
+    index = (typeof index !== 'undefined') ?  index : 0; //if second argument not present assume starting from head of list object
+    if(node === 0){
+      return 0;
+    } else if(node.nextNode == 0){
+      return index+1;
     } else {
-      this.length = node.index + 1
+      index += 1;
+      return this.getLength(node.nextNode, index);
     }
   }
-
 }
 
 list = new List()
 list.addNode("yabba");
 list.addNode("dabba");
 list.addNode("doo");
-list.addNode("Flintstones innit");
-list.changeNextNodeAtIndex(1, "Hello world")
-console.log(list.head.nextNode);
+// list.addNode("Flintstones innit");
+// list.deleteNodeByValue("dabba")
+// console.log(list.findNodeByValue("doo"));
+console.log(list.getLength());
 // console.log(list);
 // list.deleteNodeByValue("doo")
 // list.deleteNodeByValue("dabba")
