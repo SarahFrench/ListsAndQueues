@@ -32,14 +32,14 @@ class List {
     }
   }
 
-  findIndexOfValue(value, node){
+  findNodeByValue(value, node){
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
     if(node.value == value){
       return node;
     } else if (node.nextNode == 0){
       return undefined;
     } else {
-      return this.findIndexOfValue(value, node.nextNode)
+      return this.findNodeByValue(value, node.nextNode)
     }
   }
 }
