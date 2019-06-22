@@ -1,7 +1,6 @@
 class Node {
   constructor(value, index){
     this.value = value;
-    this.index = index;
     this.nextNode = 0;
   }
 }
@@ -43,27 +42,31 @@ class List {
     }
   }
 
-  findNodeByIndex(index, node){
+  findNodeByIndex(index, node, currentIndex){
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
-    if(node.index == index){
+    currentIndex = (typeof currentIndex !== 'undefined') ?  currentIndex : 0; //if third argument not present assume starting from beginning
+    if(currentIndex == index){
       return node;
     } else if (node.nextNode == 0){
       return undefined;
     } else {
-      return this.findNodeByIndex(index, node.nextNode)
+      currentIndex += 1;
+      return this.findNodeByIndex(index, node.nextNode, currentIndex)
     }
   }
 
-  changeNextNodeAtIndex(index, newNextNode, node){
+  changeNextNodeAtIndex(index, newNextNode, node, currentIndex){
+    newNextNode = (newNextNode instanceof Node) ?  newNextNode : new Node (newNextNode);
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
-    newNextNode = (newNextNode instanceof Node) ?  newNextNode : new Node (newNextNodeindex+1);
-    if(node.index == index){
+    currentIndex = (typeof currentIndex !== 'undefined') ?  currentIndex : 0; //if third argument not present assume starting from beginning
+
+    if(currentIndex == index){
       node.nextNode = newNextNode;
-      node.nextNode.index = index += 1
     } else if (node.nextNode == 0){
       return undefined;
     } else {
-      this.changeNextNodeAtIndex(index, newNextNode, node.nextNode)
+      currentIndex += 1;
+      this.changeNextNodeAtIndex(index, newNextNode, node.nextNode, currentIndex )
     }
   }
 
@@ -93,7 +96,9 @@ list.addNode("yabba");
 list.addNode("dabba");
 list.addNode("doo");
 list.addNode("Flintstones innit");
-console.log(list);
-list.deleteNodeByValue("doo")
-list.deleteNodeByValue("dabba")
-console.log(list);
+list.changeNextNodeAtIndex(1, "Hello world")
+console.log(list.head.nextNode);
+// console.log(list);
+// list.deleteNodeByValue("doo")
+// list.deleteNodeByValue("dabba")
+// console.log(list);
