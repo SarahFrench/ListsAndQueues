@@ -8,26 +8,21 @@ class Node {
 class List {
   constructor(){
     this.head = 0;
-    this.length = 0;
   }
 
   addNode(value){
-    let index = 0
     if (this.head == 0){
-      this.head = new Node(value, index)
-      this.length = index+1
+      this.head = new Node(value)
     } else {
-      this.assignNodeValue(this.head, value, index)
+      this.assignNodeValue(this.head, value)
     }
   }
 
-  assignNodeValue(node, value, index){
-    index += 1;
+  assignNodeValue(node, value){
     if (node.nextNode == 0){
-      node.nextNode = new Node(value, index);
-      this.length = index+1;
+      node.nextNode = new Node(value);
     } else {
-      this.assignNodeValue(node.nextNode, value, index)
+      this.assignNodeValue(node.nextNode, value)
     }
   }
 
