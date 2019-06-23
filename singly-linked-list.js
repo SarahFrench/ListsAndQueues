@@ -59,7 +59,6 @@ class List {
   }
 
   changeNextNodeAtIndex(index, newNextNode, node, currentIndex){
-    newNextNode = (newNextNode instanceof Node) ?  newNextNode : new Node (newNextNode);
     node = (typeof node !== 'undefined') ?  node : this.head; //if second argument not present assume starting from head of list object
     currentIndex = (typeof currentIndex !== 'undefined') ?  currentIndex : 0; //if third argument not present assume starting from beginning
 
