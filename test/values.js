@@ -28,15 +28,14 @@ describe('Getting array values', function () {
        list.addNode("yabba");
        list.addNode("dabba");
        list.addNode("doo");
-       let node = new Node ("dabba");
-       node.nextNode = new Node ("doo");
-       node.index = 1;
+       list.addNode("dabba");
        //Act
        let foundNode = list.findNodeByValue("dabba")
        //Assert
-       expect(foundNode.value).to.equal(node.value)
-       expect(foundNode.index).to.equal(node.index)
-       expect(foundNode.nextNode.value).to.equal(node.nextNode.value)
+       expect(foundNode.value).to.equal("dabba")
+       expect(foundNode.index).to.equal(1)
+       expect(foundNode.nextNode.value).to.equal("doo")
+       expect(foundNode.nextNode.value).to.not.equal(3)
 
      });
   it('Returns undefined when asked to retrieve a Node with a value not present in the list', function () {
